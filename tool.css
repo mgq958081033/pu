@@ -22,13 +22,14 @@
 .tree li::before, .tree li::after{   
     content: '';   
     position: absolute; top: 0; right: 50%;   
-    border-top: 1px solid #ccc;   
+    border-top: 1px solid #f40;   
+    /* 横线的线 */
     width: 50%; height: 20px;   
     
 }   
 .tree li::after{   
     right: auto; left: 50%;   
-    border-left: 1px solid #ccc;   
+    border-left: 1px solid #4f0;   
 }   
    
 /*We need to remove left-right connectors from elements without    
@@ -47,7 +48,8 @@ right connector from last child*/
 }   
 /*Adding back the vertical connector to the last nodes*/   
 .tree li:last-child::before{   
-    border-right: 1px solid #ccc;   
+    border-right: 1px solid yellow;   
+    /* 竖向的线  右侧的 */
     border-radius: 0 5px 0 0;   
     -webkit-border-radius: 0 5px 0 0;   
     -moz-border-radius: 0 5px 0 0;   
@@ -62,12 +64,14 @@ right connector from last child*/
 .tree ul ul::before{   
     content: '';   
     position: absolute; top: 0; left: 50%;   
-    border-left: 1px solid #ccc;   
+    border-left: 1px solid blue;   
+    /* 每一行的连线 连接线 */
     width: 0; height: 20px;   
 }   
    
 .tree li a{   
-    border: 1px solid #ccc;   
+    border: 1px solid #000;   
+    /* 盒子边框 */
     padding: 5px 10px;   
     text-decoration: none;   
     color: #666;   
@@ -86,13 +90,15 @@ right connector from last child*/
    
 /*Time for some hover effects*/   
 /*We will apply the hover effect the the lineage of the element also*/   
-.tree li a:hover, .tree li a:hover+ul li a {   
-    background: #c8e4f8; color: #000; border: 1px solid #94a0b4;   
-}   
+.tree li a:hover, .tree li a:hover+ul li a {
+    background: #ddd; color: #000; border: 1px solid #009; 
+      /* 悬停时: 盒子背景色  盒子字体颜色  盒子边框颜色  */
+}
 /*Connector styles on hover*/   
 .tree li a:hover+ul li::after,    
 .tree li a:hover+ul li::before,    
 .tree li a:hover+ul::before,    
 .tree li a:hover+ul ul::before{   
-    border-color:  #94a0b4;   
+    border-color:  #bbb;   
+    /* 悬停时 连接线的颜色 */
 }  
