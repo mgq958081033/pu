@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+	<!--
+-->
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>MODEL PAGE</title>
+	</head>
+	<link rel="stylesheet" href="./buju.css" />
+	<link rel="stylesheet" href="./tool.css" />
+
+	<style>
+		span {
+			/*display: inline-block;
+			width: 100px;
+			height: 50px;
+			background-color: deeppink;
+			margin: 10px;*/
+		}
+	</style>
+
+	<body>
+		<input class="btn" type="button" value="Ajax提交" onclick="Ajax();" />
+		<div id="disp"></div>
+		<div class="tree" id="contenttmp"></div>
+
+	</body>
+
+	<script src="jq.js"></script>
+	<!--尝试分组打印-->
+	<script type="text/javascript">
+		var Ajax = function() {
+			$("#contenttmp").html("")
+			$.getJSON("./tree.txt", function(data) {
+				//				console.log(data);//打印整体//(12) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+				var tmp = 1
+				var num = 1
+				console.log(data)
+				for(var i = 0; i < data.length; i++) {
+					var meigeren = data[i] //打印每一个人//{personName: "爷爷", personId: "personId0", child: Array(2), mate: Array(0), generation: 1}
+					console.log(meigeren)
+					var beifen = meigeren.generation // 获取每个人的辈分
+					if(num == 1) {
+						num--
+						$("#contenttmp").append("<ul>");
+					}
+
+					if(tmp == beifen) {
+						for(var j = 0; j < meigeren.child.length; j++) {
+							console.log(meigeren.child.length)
+							if(meigeren.child.length) {
+								if(meigeren.personId == meigeren.child[j]) {
+									$("#contenttmp").append("<li><a>" + meigeren.personName + "</a></li>");
+								} else {
+									num++
+									tmp++
+									i--
+									$("#contenttmp").append("</li></ul>");
+								}
+							}
+							//							$("#contenttmp").append("<li><a>" + meigeren.personName + "</a>");
+							//							alert(tmp)
+						}
+
+					}
+
+				}
+			});
+			return
+		}
+	</script>
+
+	<!--尝试分组打印-->
+	<script type="text/javascript">
+		//		var Ajax = function() {
+		//			$("#contenttmp").html("")
+		//			$.getJSON("./tree.txt", function(data) {
+		//				//				console.log(data);//打印整体//(12) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+		//				var tmp = 1
+		//				var num = 1
+		//				console.log(data)
+		//				for(var i = 0; i < data.length; i++) {
+		//					var meigeren = data[i] //打印每一个人//{personName: "爷爷", personId: "personId0", child: Array(2), mate: Array(0), generation: 1}
+		//					console.log(meigeren)
+		//					var beifen = meigeren.generation // 获取每个人的辈分
+		//					if(num == 1) {
+		//						num--
+		//						$("#contenttmp").append("<ul>");
+		//					}
+		//					if(tmp == beifen) {
+		//						
+		//						$("#contenttmp").append("<li><a>" + meigeren.personName + "</a>");
+		//						
+		//						//							alert(tmp)
+		//					} else {
+		//						num++
+		//						tmp++
+		//						i--
+		//						$("#contenttmp").append("</li></ul>");
+		//					}
+		//					
+		//				}
+		//			});
+		//			return
+		//		}
+	</script>
+
+</html>

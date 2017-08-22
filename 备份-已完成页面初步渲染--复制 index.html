@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>MODEL PAGE</title>
+	</head>
+	<link rel="stylesheet" href="./buju.css" />
+	<link rel="stylesheet" href="./tool.css" />
+	<style>
+		span {
+			display: inline-block;
+			width: 100px;
+			height: 50px;
+			background-color: deeppink;
+			margin: 10px;
+		}
+	</style>
+
+	<body>
+		<input type="button" value="Ajax提交" onclick="Ajax();" />
+		<div id="disp"></div>
+		<div id="contenttmp"></div>
+	</body>
+	
+
+	<!--尝试分组打印-->
+	<script type="text/javascript">
+		var Ajax = function() {
+			$("#contenttmp").html("")
+			$.getJSON("./tree.txt", function(data) {
+				//				console.log(data);//打印整体//(12) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+				var tmp = 1
+				console.log(data)
+				for(var i = 0; i < data.length; i++) {
+
+					var meigeren = data[i] //打印每一个人//{personName: "爷爷", personId: "personId0", child: Array(2), mate: Array(0), generation: 1}
+					console.log(meigeren)
+					var beifen = meigeren.generation // 获取每个人的辈分
+					if(tmp == beifen) {
+							$("#contenttmp").append("<span>" + meigeren.personName + "</span>");
+//							alert(tmp)
+					} else {
+						tmp++
+						i--
+						$("#contenttmp").append("<br />");
+					}
+				}
+			});
+			return
+		}
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!--以前的-->
+	<script type="text/javascript" src="./jq.js"></script>
+
+	<!--读取json文件测试-->
+	<!--<script type="text/javascript">
+		var Ajax = function() {
+			$.getJSON("./tree.txt", function(data) {
+				$.each(data, function(i, item) {
+					$("#disp").append("<h3>" + item.personName + "</h3>");
+					$("#disp").append("<p>" + item.personId + "</p>");
+					$("#disp").append("<p>" + item.generation + "</p>");
+				});
+			});
+		}
+	</script>-->
+
+	<!--1 把item分条打印  2把json所有内容一次性打印-->
+	<script type="text/javascript">
+		//		var Ajax = function() {
+		//			$.getJSON("./tree.txt", function(data) {
+		//				$.each(data, function(i, item) {
+		//					$("#disp").append("<p>" + item.personName+"<br />");
+		//					$("#disp").append(item.personId+"<br />");
+		//					$("#disp").append(item.child+"<br />");
+		//					$("#disp").append(item.generation + "</p><hr />");
+		//					console.log(item)
+		//				console.log(item.length)
+
+		//				console.log(data)
+		//				console.log(data.length)
+		//				for(var i = 0; i < data.length; i++) {
+		//					$("#disp").append(data[i]);
+		//				}
+		//				});
+		//			});
+		//		}
+	</script>
+
+	<!--尝试按辈打印数据-->
+	<script type="text/javascript">
+		//		var Ajax = function() {
+		//			$.getJSON("./tree.txt", function(data) {
+		//				//				console.log(data);//打印整体//(12) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+		//				for(var i = 0; i < data.length; i++) {
+		//
+		//					var meigeren = data[i] //打印每一个人//{personName: "爷爷", personId: "personId0", child: Array(2), mate: Array(0), generation: 1}
+		//					console.log(meigeren) // 打印
+		//
+		//					var beifen = meigeren.generation // 获取每个人的辈分
+		//					console.log("打印辈分" + beifen)
+		//				
+		//					console.log("打印該辈分所有的人")
+		//					console.log(meigeren)
+		//					$("#contenttmp").append("<span>" + meigeren.personName + "</span>");
+		//
+		//					
+		//				}
+		//				$("#contenttmp").append("<hr />");
+		//			});
+		//		}
+	</script>
+
+</html>

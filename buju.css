@@ -1,0 +1,17 @@
+body{
+	background-color: #fff;
+}
+
+ul ,  Li{
+	list-style: none;
+}
+.btn{
+	width: 200px;
+	height: 100px;
+}
+
+li{
+	float: left;
+}
+
+
